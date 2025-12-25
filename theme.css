@@ -1,0 +1,520 @@
+/*
+  Emacs Org Mode — Obsidian Theme
+*/
+
+/* -----------------------------
+   Core palette and typography
+------------------------------ */
+
+:root {
+  --font-text: "Courier New", monospace;
+  --font-monospace: "Courier New", monospace;
+  --line-height-normal: 1.6;
+}
+
+.theme-dark {
+  /* Base tones (grayscale) */
+  --color-base-00: #1c1c1c; /* app background */
+  --color-base-05: #222222;
+  --color-base-10: #282828; /* main "buffer" */
+  --color-base-20: #2a2a2a; /* panels / callouts */
+  --color-base-25: #2f2f2f; /* counters */
+  --color-base-30: #343434; /* modeline / status */
+  --color-base-35: #383838; /* header bar */
+  --color-base-40: #505050;
+  --color-base-50: #696969;
+  --color-base-60: #8a8a8a;
+  --color-base-70: #c0c0c0;
+  --color-base-80: #d0d0d0;
+
+  /* Accents from Emacs */
+  --emacs-cyan: #7cb8bb;
+  --emacs-cyan-bright: #8cd0d3;
+  --emacs-teal-link: #93e0e3;
+  --emacs-green: #6fb86f;
+  --emacs-green-comment: #7f9f7f;
+  --emacs-yellow: #f0dfaf;
+  --emacs-red-string: #cc9393;
+  --emacs-offwhite: #dcdccc;
+
+  /* Obsidian color variables */
+  --background-primary: var(--color-base-10);
+  --background-primary-alt: var(--color-base-00);
+  --background-secondary: var(--color-base-00);
+  --background-secondary-alt: var(--color-base-25);
+
+  --background-modifier-border: var(--color-base-50);
+  --background-modifier-border-hover: var(--color-base-40);
+  --background-modifier-border-focus: var(--emacs-cyan);
+  --background-modifier-form-field: var(--color-base-20);
+  --background-modifier-form-field-highlighted: var(--color-base-25);
+  --background-modifier-box-shadow: rgba(0, 0, 0, 0.45);
+  --background-modifier-success: rgba(111, 184, 111, 0.18);
+  --background-modifier-error: rgba(204, 147, 147, 0.18);
+
+  --text-normal: var(--color-base-80);
+  --text-muted: var(--color-base-70);
+  --text-faint: var(--emacs-green-comment);
+
+  --text-accent: var(--emacs-teal-link);
+  --text-accent-hover: var(--emacs-cyan-bright);
+
+  --interactive-accent: var(--emacs-cyan);
+  --interactive-accent-hover: var(--emacs-cyan-bright);
+
+  --h1-color: var(--emacs-cyan-bright);
+  --h2-color: var(--emacs-cyan);
+  --h3-color: var(--emacs-green);
+  --h4-color: var(--emacs-yellow);
+  --h5-color: var(--color-base-80);
+  --h6-color: var(--color-base-70);
+
+  --link-color: var(--emacs-teal-link);
+  --link-color-hover: var(--emacs-cyan-bright);
+
+  --code-normal: var(--emacs-offwhite);
+  --code-background: var(--color-base-20);
+
+  --tag-color: var(--emacs-yellow);
+  --tag-background: rgba(240, 223, 175, 0.12);
+
+  --text-selection: rgba(124, 184, 187, 0.25);
+  --flashing-background: rgba(124, 184, 187, 0.18);
+}
+
+/* Light mode is intentionally minimal; this theme is designed for Dark mode. */
+.theme-light {
+  --font-text: "Courier New", monospace;
+  --font-monospace: "Courier New", monospace;
+}
+
+/* -----------------------------
+   App-wide typography and layout
+------------------------------ */
+
+body,
+.app-container,
+.workspace,
+.workspace * {
+  font-family: var(--font-text);
+  line-height: var(--line-height-normal);
+}
+
+.markdown-reading-view,
+.markdown-preview-view,
+.markdown-source-view {
+  letter-spacing: 0.1px;
+}
+
+::selection {
+  background: var(--text-selection);
+}
+
+/* -----------------------------
+   Emacs-like chrome (header/modeline)
+------------------------------ */
+
+/* Tab / view header */
+.view-header,
+.workspace-tab-header-container {
+  background-color: var(--color-base-35);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.view-header-title,
+.workspace-tab-header-inner-title {
+  color: var(--emacs-cyan);
+  font-weight: 700;
+}
+
+/* Active tab highlight */
+.workspace-tab-header.is-active {
+  background-color: var(--color-base-30);
+  box-shadow: inset 0 -2px 0 0 var(--emacs-cyan);
+}
+
+/* Ribbon (left icons) */
+.workspace-ribbon {
+  background-color: var(--background-secondary);
+  border-right: 1px solid var(--background-modifier-border);
+}
+.workspace-ribbon .clickable-icon {
+  color: var(--text-muted);
+}
+.workspace-ribbon .clickable-icon:hover {
+  color: var(--emacs-cyan-bright);
+}
+
+/* Status bar = modeline */
+.status-bar {
+  background-color: var(--color-base-30);
+  border-top: 1px solid var(--background-modifier-border);
+  color: var(--text-muted);
+  font-family: var(--font-monospace);
+}
+.status-bar-item {
+  color: var(--text-muted);
+}
+.status-bar-item.mod-clickable:hover {
+  color: var(--emacs-yellow);
+}
+
+/* -----------------------------
+   Headings (Org-mode vibe)
+------------------------------ */
+
+.markdown-reading-view h1,
+.markdown-preview-view h1 {
+  color: var(--h1-color);
+  font-size: 1.8em;
+  border-bottom: 1px dashed var(--color-base-40);
+  padding-bottom: 0.35em;
+}
+
+.markdown-reading-view h2,
+.markdown-preview-view h2 {
+  color: var(--h2-color);
+  font-size: 1.4em;
+  margin-top: 1.8em;
+}
+
+.markdown-reading-view h3,
+.markdown-preview-view h3 {
+  color: var(--h3-color);
+  font-size: 1.2em;
+}
+
+.markdown-reading-view h4,
+.markdown-preview-view h4 {
+  color: var(--h4-color);
+}
+
+/* Source mode (CM6) header tokens */
+.markdown-source-view.mod-cm6 .cm-header-1,
+.markdown-source-view.mod-cm6 .HyperMD-header-1 {
+  color: var(--h1-color);
+  font-weight: 800;
+}
+.markdown-source-view.mod-cm6 .cm-header-2,
+.markdown-source-view.mod-cm6 .HyperMD-header-2 {
+  color: var(--h2-color);
+  font-weight: 700;
+}
+.markdown-source-view.mod-cm6 .cm-header-3,
+.markdown-source-view.mod-cm6 .HyperMD-header-3 {
+  color: var(--h3-color);
+  font-weight: 700;
+}
+.markdown-source-view.mod-cm6 .cm-header-4,
+.markdown-source-view.mod-cm6 .HyperMD-header-4 {
+  color: var(--h4-color);
+  font-weight: 700;
+}
+
+/* Note title */
+.inline-title {
+  color: var(--h1-color);
+  font-weight: 800;
+}
+
+/* -----------------------------
+   Links
+------------------------------ */
+
+a,
+.markdown-reading-view a,
+.external-link {
+  color: var(--link-color);
+  text-decoration: none;
+}
+a:hover,
+.markdown-reading-view a:hover,
+.external-link:hover {
+  text-decoration: underline;
+  color: var(--link-color-hover);
+}
+
+/* -----------------------------
+   Lists (Org-mode style)
+------------------------------ */
+
+/* Keep ordered lists normal, tint markers */
+.markdown-reading-view ol > li::marker,
+.markdown-preview-view ol > li::marker {
+  color: var(--emacs-green-comment);
+}
+
+/* Unordered lists: hyphen-like marker (exclude task lists) */
+.markdown-reading-view ul:not(.contains-task-list),
+.markdown-preview-view ul:not(.contains-task-list) {
+  list-style: none;
+  padding-left: 1.6em;
+}
+.markdown-reading-view ul:not(.contains-task-list) > li,
+.markdown-preview-view ul:not(.contains-task-list) > li {
+  position: relative;
+}
+.markdown-reading-view ul:not(.contains-task-list) > li::before,
+.markdown-preview-view ul:not(.contains-task-list) > li::before {
+  content: "- ";
+  position: absolute;
+  left: -1.4em;
+  color: var(--emacs-green-comment);
+}
+
+/* -----------------------------
+   Code and syntax highlighting
+------------------------------ */
+
+code,
+.markdown-reading-view code,
+.markdown-preview-view code {
+  font-family: var(--font-monospace);
+  color: var(--emacs-yellow);
+  background-color: rgba(42, 42, 42, 0.9);
+  border: 1px solid rgba(105, 105, 105, 0.6);
+  border-radius: 4px;
+  padding: 0.08em 0.28em;
+}
+
+pre,
+.markdown-reading-view pre,
+.markdown-preview-view pre {
+  background: var(--code-background);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 0.9em 1em;
+  overflow: auto;
+}
+
+pre code {
+  color: var(--code-normal);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* CodeMirror 6 (editor) tokens */
+.cm-editor .cm-comment { color: var(--emacs-green-comment) !important; }
+.cm-editor .cm-keyword { color: var(--emacs-yellow) !important; font-weight: 700; }
+.cm-editor .cm-string { color: var(--emacs-red-string) !important; }
+.cm-editor .cm-number { color: var(--emacs-yellow) !important; }
+.cm-editor .cm-def,
+.cm-editor .cm-function { color: var(--emacs-cyan) !important; }
+.cm-editor .cm-operator { color: var(--text-normal) !important; }
+.cm-editor .cm-variableName { color: var(--emacs-offwhite) !important; }
+.cm-editor .cm-typeName,
+.cm-editor .cm-className { color: var(--emacs-cyan-bright) !important; }
+
+/* Prism (preview) tokens */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata { color: var(--emacs-green-comment); }
+
+.token.keyword,
+.token.atrule { color: var(--emacs-yellow); font-weight: 700; }
+
+.token.string,
+.token.char,
+.token.attr-value { color: var(--emacs-red-string); }
+
+.token.function,
+.token.method { color: var(--emacs-cyan); }
+
+.token.class-name,
+.token.builtin { color: var(--emacs-cyan-bright); }
+
+.token.number,
+.token.boolean,
+.token.constant { color: var(--emacs-yellow); }
+
+.token.operator,
+.token.punctuation { color: var(--text-normal); }
+
+/* -----------------------------
+   Blockquotes and callouts (research-area / achievement vibe)
+------------------------------ */
+
+blockquote {
+  background-color: var(--color-base-20);
+  border-left: 3px solid var(--emacs-cyan);
+  padding: 0.75em 1em;
+  margin: 1em 0;
+  color: var(--text-normal);
+}
+
+.callout {
+  background-color: var(--color-base-20);
+  border-left: 3px solid var(--emacs-cyan);
+  border-radius: 6px;
+}
+
+.callout-title {
+  color: var(--emacs-cyan);
+  font-weight: 800;
+}
+
+/* "Achievement" feel: green callouts */
+.callout[data-callout="success"],
+.callout[data-callout="done"],
+.callout[data-callout="check"],
+.callout[data-callout="tip"] {
+  border-left-color: var(--emacs-green);
+}
+.callout[data-callout="success"] .callout-title,
+.callout[data-callout="done"] .callout-title,
+.callout[data-callout="check"] .callout-title,
+.callout[data-callout="tip"] .callout-title {
+  color: var(--emacs-green);
+}
+
+/* Warnings use yellow */
+.callout[data-callout="warning"],
+.callout[data-callout="caution"],
+.callout[data-callout="attention"] {
+  border-left-color: var(--emacs-yellow);
+}
+.callout[data-callout="warning"] .callout-title,
+.callout[data-callout="caution"] .callout-title,
+.callout[data-callout="attention"] .callout-title {
+  color: var(--emacs-yellow);
+}
+
+/* Errors use string red */
+.callout[data-callout="danger"],
+.callout[data-callout="error"],
+.callout[data-callout="bug"] {
+  border-left-color: var(--emacs-red-string);
+}
+.callout[data-callout="danger"] .callout-title,
+.callout[data-callout="error"] .callout-title,
+.callout[data-callout="bug"] .callout-title {
+  color: var(--emacs-red-string);
+}
+
+/* -----------------------------
+   Tables
+------------------------------ */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr {
+  background: var(--color-base-25);
+}
+
+th, td {
+  border: 1px solid var(--background-modifier-border);
+  padding: 0.5em 0.7em;
+}
+
+th {
+  color: var(--emacs-cyan);
+  font-weight: 800;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(47, 47, 47, 0.25);
+}
+
+/* -----------------------------
+   UI controls
+------------------------------ */
+
+button,
+.mod-cta,
+.mod-warning {
+  font-family: var(--font-monospace);
+}
+
+input[type="text"],
+textarea,
+select {
+  background-color: var(--background-modifier-form-field);
+  border: 1px solid var(--background-modifier-border);
+  color: var(--text-normal);
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--background-modifier-border-focus);
+  box-shadow: 0 0 0 2px rgba(124, 184, 187, 0.22);
+  outline: none;
+}
+
+/* -----------------------------
+   Graph view
+------------------------------ */
+
+.graph-view.color-fill {
+  color: var(--emacs-cyan);
+}
+.graph-view.color-line {
+  color: var(--background-modifier-border);
+}
+.graph-view.color-text {
+  color: var(--text-muted);
+}
+/* -----------------------------
+   Use inside notes via HTML blocks (Preview/Reading view).
+------------------------------ */
+
+.emacs-header {
+  background-color: var(--color-base-35);
+  color: var(--emacs-cyan);
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  font-weight: 800;
+}
+
+.emacs-buffer {
+  background-color: var(--color-base-10);
+  border: 1px solid var(--background-modifier-border);
+  margin: 10px 0;
+  padding: 15px;
+  font-family: var(--font-monospace);
+}
+
+.emacs-modeline {
+  background-color: var(--color-base-30);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-top: 1px solid var(--background-modifier-border);
+  font-size: 0.9em;
+}
+
+.highlighted { color: var(--emacs-yellow); }
+.comment { color: var(--emacs-green-comment); }
+.keyword { color: var(--emacs-yellow); font-weight: 800; }
+.string { color: var(--emacs-red-string); }
+.function { color: var(--emacs-cyan); }
+
+.section { margin: 20px 0; }
+
+.org-list {
+  margin-left: 20px;
+  list-style-type: none;
+  padding-left: 0;
+}
+.org-list li::before {
+  content: "- ";
+  color: var(--emacs-green-comment);
+}
+
+.research-area {
+  background-color: var(--color-base-20);
+  border-left: 3px solid var(--emacs-cyan);
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.achievement {
+  background-color: var(--color-base-25);
+  border-left: 3px solid var(--emacs-green);
+  padding: 10px;
+  margin: 10px 0;
+}
