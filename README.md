@@ -7,7 +7,7 @@ Files included:
 Install (desktop):
 1. Open your vault folder.
 2. Go to `.obsidian/themes/`
-3. Create a folder named `Emacs-Org-Mode`
+3. Create a folder named `Emacs Org Mode`
 4. Copy `manifest.json` and `theme.css` into that folder
 5. In Obsidian: **Settings > Appearance > Themes** → select **Emacs Org Mode**
 
